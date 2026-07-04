@@ -6,7 +6,7 @@
   font-weight: 500;
   white-space: nowrap;
 
-  // SIZES (без border-radius)
+  // SIZES
   &_sm {
     padding: 4px 8px;
     font-size: 12px;
@@ -22,7 +22,7 @@
     font-size: 16px;
   }
 
-  // STYLES (здесь только радиусы)
+  // STYLES
   &_sharp {
     border-radius: 4px;
   }
