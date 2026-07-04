@@ -1,0 +1,96 @@
+:root {
+  /* PRIMARY */
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+
+  /* GRAY */
+  --gray-50: #FAFAFA;
+  --gray-100: #F6F7F9;
+  --gray-200: #E5E7EA;
+  --gray-300: #CED2D6;
+  --gray-400: #9EA5AD;
+  --gray-500: #676E76;
+  --gray-600: #596066;
+  --gray-700: #454C52;
+  --gray-800: #383F45;
+  --gray-900: #24292E;
+  --gray-1000: #1A1D1F;
+
+  /* ERROR */
+  --error-50: #FAFAFA;
+  --error-100: #FEF2F2;
+  --error-200: #FDE9E9;
+  --error-300: #FAC7C7;
+  --error-400: #F7A1A1;
+  --error-500: #F37373;
+  --error-600: #F34141;
+  --error-700: #CD3636;
+  --error-800: #A32E2E;
+  --error-900: #7C2323;
+  --error-1000: #601B1B;
+
+  /* WARNING */
+  --warning-50: #FFFCF5;
+  --warning-100: #FEFAF5;
+  --warning-200: #FBF2CB;
+  --warning-300: #FDE57E;
+  --warning-400: #FFD16A;
+  --warning-500: #FBBC55;
+  --warning-600: #E9A23B;
+  --warning-700: #C8811A;
+  --warning-800: #A35C00;
+  --warning-900: #8B4400;
+  --warning-1000: #78310B;
+
+  /* SUCCESS */
+  --success-50: #F6FEF9;
+  --success-100: #EFFDF6;
+  --success-200: #D9F9E6;
+  --success-300: #B8F1D2;
+  --success-400: #8EE4BA;
+  --success-500: #6AD09D;
+  --success-600: #53B483;
+  --success-700: #2F9461;
+  --success-800: #2F7657;
+  --success-900: #255E46;
+  --success-1000: #1E4D3A;
+
+  /* SEMANTIC */
+  --color-primary: var(--color-black);
+  --color-primary-hover: var(--gray-800);
+  --color-secondary: var(--gray-200);
+  --color-secondary-hover: var(--gray-300);
+  --color-error: var(--error-600);
+  --color-warning: var(--warning-600);
+  --color-success: var(--success-600);
+  --color-bg: var(--color-white);
+  --color-bg-secondary: var(--gray-50);
+  --color-text: var(--gray-1000);
+  --color-text-secondary: var(--gray-500);
+  --color-border: var(--gray-200);
+  --color-border-hover: var(--gray-400);
+
+  /* SHADOWS */
+  --shadow-small: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-large: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+  /* RADIUS */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* SPACING */
+  --spacing-2xs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+
+  /* FONT */
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}

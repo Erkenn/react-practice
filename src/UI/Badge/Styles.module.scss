@@ -1,0 +1,89 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  white-space: nowrap;
+
+  // SIZES (без border-radius)
+  &_sm {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  &_md {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  &_lg {
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+
+  // STYLES (здесь только радиусы)
+  &_sharp {
+    border-radius: 4px;
+  }
+
+  &_smooth {
+    border-radius: 12px;
+  }
+
+  // VARIANTS
+  &_primary {
+    background-color: var(--gray-100);
+    color: var(--gray-700);
+  }
+
+  &_error {
+    background-color: var(--error-100);
+    color: var(--error-700);
+  }
+
+  &_warning {
+    background-color: var(--warning-100);
+    color: var(--warning-700);
+  }
+
+  &_success {
+    background-color: var(--success-100);
+    color: var(--success-700);
+  }
+
+  // ELEMENTS
+  &__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: currentColor;
+    flex-shrink: 0;
+  }
+
+  &__icon {
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  &__label {
+    line-height: 1;
+  }
+
+  &__close {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-left: 4px;
+    cursor: pointer;
+    color: currentColor;
+    font-size: 14px;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
