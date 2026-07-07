@@ -1,12 +1,12 @@
 import { memo } from 'react'
-import type { JSX } from 'react'
+import type { JSX, ButtonHTMLAttributes } from 'react'
 import styles from './Styles.module.scss'
 
 type ButtonVariant = 'primary' | 'secondary' | 'secondaryGrey' | 'textOnly'
 type ButtonStyle = 'sharp' | 'smooth'
 type ButtonSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl'
 
-interface ButtonProps {
+interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'style'> {
   children: React.ReactNode
   variant?: ButtonVariant
   style?: ButtonStyle
@@ -22,14 +22,19 @@ function ButtonComponent({
   size = 'md',
   disabled = false,
   onClick,
+  type = 'button',
+  className = '',
+  ...rest
 }: ButtonProps): JSX.Element {
-  const className = `${styles.btn} ${styles[`btn_${variant}`]} ${styles[`btn_${style}`]} ${styles[`btn_${size}`]}`
+  const buttonClassName = `${styles.btn} ${styles[`btn_${variant}`]} ${styles[`btn_${style}`]} ${styles[`btn_${size}`]} ${className}`.trim()
 
   return (
     <button
-      className={className}
+      className={buttonClassName}
       onClick={onClick}
       disabled={disabled}
+      type={type}
+      {...rest}
     >
       <span className={styles.btn__text}>{children}</span>
       <span className={styles.btn__arrow}>→</span>
