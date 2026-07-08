@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom'
-import { AuthProvider } from './context/AuthProvider'
-import { useAuth } from './context/useAuth'
+import { AppProvider } from './context/AppProvider'
+import { useAppContext } from './context/useAppContext'
 import { ProtectedRoute } from './components/ProtectedRoute'
-import { Button, Avatar } from './UI'
+import { Button, Avatar, Badge } from './UI'
 import { Home } from './pages/Home/Home'
 import { Catalog } from './pages/Catalog/Catalog'
 import { Cart } from './pages/Cart/Cart'
@@ -12,7 +12,7 @@ import { Profile } from './pages/Profile/Profile'
 import './App.module.scss'
 
 function Header() {
-  const { user, logout, isAuthenticated } = useAuth()
+  const { user, logout, isAuth, cart } = useAppContext()
 
   return (
     <header className="header">
@@ -20,10 +20,13 @@ function Header() {
       <nav className="header__nav">
         <Link to="/">Главная</Link>
         <Link to="/catalog">Каталог</Link>
-        <Link to="/cart">Корзина</Link>
+        <Link to="/cart">
+          Корзина
+          {cart.length > 0 && <Badge variant="error" size="sm">{cart.length}</Badge>}
+        </Link>
       </nav>
       <div className="header__actions">
-        {isAuthenticated ? (
+        {isAuth ? (
           <>
             <Link to="/profile">
               <Avatar type="text" initials={user?.name?.charAt(0) || 'U'} size="sm" />
@@ -75,11 +78,11 @@ function AppRoutes() {
 
 function AppComponent() {
   return (
-    <AuthProvider>
+    <AppProvider>
       <BrowserRouter>
         <AppRoutes />
       </BrowserRouter>
-    </AuthProvider>
+    </AppProvider>
   )
 }
 

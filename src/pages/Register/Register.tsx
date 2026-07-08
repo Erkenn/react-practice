@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { registerSchema } from '../../schemas/registerSchema'
-import { useAuth } from '../../context/useAuth'
+import { useAppContext } from '../../context/useAppContext'
 import { Input, Button, Alert } from '../../UI'
 import styles from './Register.module.scss'
 import { useState } from 'react'
@@ -16,7 +16,7 @@ interface RegisterForm {
 
 export function Register() {
   const navigate = useNavigate()
-  const { register: registerUser } = useAuth()
+  const { register: registerUser } = useAppContext()
   const [error, setError] = useState<string | null>(null)
 
   const {

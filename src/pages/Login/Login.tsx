@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { loginSchema } from '../../schemas/loginSchema'
-import { useAuth } from '../../context/useAuth'
+import { useAppContext } from '../../context/useAppContext'
 import { Input, Button, Alert } from '../../UI'
 import styles from './Login.module.scss'
 import { useState } from 'react'
@@ -14,7 +14,7 @@ interface LoginForm {
 
 export function Login() {
   const navigate = useNavigate()
-  const { login } = useAuth()
+  const { login } = useAppContext()
   const [error, setError] = useState<string | null>(null)
 
   const {
