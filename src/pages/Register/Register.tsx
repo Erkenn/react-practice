@@ -9,7 +9,7 @@ import { useState } from 'react'
 
 interface RegisterForm {
   name: string
-  email: string
+  username: string
   password: string
   confirmPassword: string
 }
@@ -28,8 +28,7 @@ export function Register() {
   })
 
   const onSubmit = async (data: RegisterForm) => {
-    const result = await registerUser(data.email, data.name, data.password)
-
+    const result = await registerUser(data.username, data.password, data.name)
     if (result.success) {
       navigate('/')
     } else {
@@ -61,22 +60,17 @@ export function Register() {
             variant={errors.name ? 'error' : 'none'}
             {...register('name')}
           />
-          {errors.name && (
-            <p className={styles.errorMessage}>{errors.name.message}</p>
-          )}
+          {errors.name && <p className={styles.errorMessage}>{errors.name.message}</p>}
         </div>
 
         <div className={styles.formGroup}>
           <Input
-            label="Email"
-            placeholder="your@email.com"
-            type="email"
-            variant={errors.email ? 'error' : 'none'}
-            {...register('email')}
+            label="Логин"
+            placeholder="Придумайте логин"
+            variant={errors.username ? 'error' : 'none'}
+            {...register('username')}
           />
-          {errors.email && (
-            <p className={styles.errorMessage}>{errors.email.message}</p>
-          )}
+          {errors.username && <p className={styles.errorMessage}>{errors.username.message}</p>}
         </div>
 
         <div className={styles.formGroup}>
@@ -87,9 +81,7 @@ export function Register() {
             variant={errors.password ? 'error' : 'none'}
             {...register('password')}
           />
-          {errors.password && (
-            <p className={styles.errorMessage}>{errors.password.message}</p>
-          )}
+          {errors.password && <p className={styles.errorMessage}>{errors.password.message}</p>}
         </div>
 
         <div className={styles.formGroup}>
@@ -101,9 +93,7 @@ export function Register() {
             {...register('confirmPassword')}
           />
           {errors.confirmPassword && (
-            <p className={styles.errorMessage}>
-              {errors.confirmPassword.message}
-            </p>
+            <p className={styles.errorMessage}>{errors.confirmPassword.message}</p>
           )}
         </div>
 

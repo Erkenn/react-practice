@@ -1,0 +1,90 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy",
+      "name": "Администратор",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "username": "user",
+      "password": "$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy",
+      "name": "Пользователь",
+      "role": "user"
+    },
+    {
+      "id": 1783615338389,
+      "username": "testtest",
+      "password": "$2b$10$ISdzDQ3AMzVSN3bSxSwCBOhLJKPWdYTuCcr04nPxZF5wlfAj0/ml6",
+      "name": "test",
+      "role": "user"
+    },
+    {
+      "id": 1783626078839,
+      "username": "myadmin",
+      "password": "$2b$10$z527UiiAjiCwXmxeSM4V/uOvSDHNJY.Y9Tgw2SvtvJg9VyOgvGfrG",
+      "name": "Админ",
+      "role": "admin"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Nike Air Max",
+      "price": 129,
+      "oldPrice": 159,
+      "category": "shoes",
+      "image": "https://placehold.co/400x400/FF6B6B/FFFFFF?text=Nike",
+      "rating": 4.8,
+      "reviews": 39
+    },
+    {
+      "id": 2,
+      "name": "Puma Running",
+      "price": 89,
+      "category": "shoes",
+      "image": "https://placehold.co/400x400/4ECDC4/FFFFFF?text=Puma",
+      "rating": 4.5,
+      "reviews": 24
+    },
+    {
+      "id": 3,
+      "name": "Adidas Ultraboost",
+      "price": 149,
+      "oldPrice": 179,
+      "category": "shoes",
+      "image": "https://placehold.co/400x400/45B7D1/FFFFFF?text=Adidas",
+      "rating": 4.9,
+      "reviews": 56
+    },
+    {
+      "id": 4,
+      "name": "Cotton T-Shirt",
+      "price": 29,
+      "category": "clothes",
+      "image": "https://placehold.co/400x400/96CEB4/FFFFFF?text=T-Shirt",
+      "rating": 4.7,
+      "reviews": 128
+    },
+    {
+      "id": 5,
+      "name": "Leather Jacket",
+      "price": 199,
+      "category": "clothes",
+      "image": "https://placehold.co/400x400/333333/FFFFFF?text=Jacket",
+      "rating": 4.6,
+      "reviews": 45
+    },
+    {
+      "id": 6,
+      "name": "Watch Classic",
+      "price": 249,
+      "category": "accessories",
+      "image": "https://placehold.co/400x400/666666/FFFFFF?text=Watch",
+      "rating": 4.4,
+      "reviews": 67
+    }
+  ]
+}

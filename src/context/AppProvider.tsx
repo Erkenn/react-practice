@@ -1,15 +1,21 @@
 import { useState, useEffect } from 'react'
 import type { ReactNode } from 'react'
+import axios, { AxiosError } from 'axios'
 import { AppContext } from './AppContext'
-import type { User, CartItem } from './AppContext'
+import type { CartItem, Product, UserRole, User } from './AppContext'
 
-interface StoredUser extends User {
-  password: string
+interface AuthSession {
+  token: string
+  user: User
+}
+
+interface ErrorResponse {
+  message?: string
 }
 
 export function AppProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(() => {
-    const saved = localStorage.getItem('user')
+  const [session, setSession] = useState<AuthSession | null>(() => {
+    const saved = localStorage.getItem('auth_session')
     return saved ? JSON.parse(saved) : null
   })
 
@@ -18,49 +24,58 @@ export function AppProvider({ children }: { children: ReactNode }) {
     return saved ? JSON.parse(saved) : []
   })
 
+  const [products, setProducts] = useState<Product[]>([])
+
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
 
-  const isAuth = !!user
+  const user = session?.user || null
+  const isAuth = !!session
   const isAdmin = user?.role === 'admin'
+  const role: UserRole = !isAuth ? 'guest' : isAdmin ? 'admin' : 'user'
 
-  const login = async (email: string, password: string) => {
-    await new Promise(resolve => setTimeout(resolve, 500))
-    const users: StoredUser[] = JSON.parse(localStorage.getItem('users') || '[]')
-    const found = users.find(u => u.email === email && u.password === password)
-
-    if (found) {
-      const currentUser: User = { email: found.email, name: found.name, role: found.role || 'user' }
-      setUser(currentUser)
-      localStorage.setItem('user', JSON.stringify(currentUser))
-      return { success: true }
+  const login = async (username: string, password: string) => {
+    try {
+      const response = await axios.post('/api/login', { username, password })
+      const newSession: AuthSession = {
+        token: response.data.token,
+        user: response.data.user,
+      }
+      setSession(newSession)
+      localStorage.setItem('auth_session', JSON.stringify(newSession))
+      return { success: true as const }
+    } catch (error) {
+      const axiosError = error as AxiosError<ErrorResponse>
+      return {
+        success: false as const,
+        error: axiosError.response?.data?.message || 'Ошибка входа',
+      }
     }
-    return { success: false, error: 'Неверный email или пароль' }
   }
 
-  const register = async (email: string, name: string, password: string) => {
-    await new Promise(resolve => setTimeout(resolve, 500))
-    const users: StoredUser[] = JSON.parse(localStorage.getItem('users') || '[]')
-    const exists = users.find(u => u.email === email)
-
-    if (exists) {
-      return { success: false, error: 'Пользователь с таким email уже существует' }
+  const register = async (username: string, password: string, name: string) => {
+    try {
+      const response = await axios.post('/api/register', { username, password, name })
+      const newSession: AuthSession = {
+        token: response.data.token,
+        user: response.data.user,
+      }
+      setSession(newSession)
+      localStorage.setItem('auth_session', JSON.stringify(newSession))
+      return { success: true as const }
+    } catch (error) {
+      const axiosError = error as AxiosError<ErrorResponse>
+      return {
+        success: false as const,
+        error: axiosError.response?.data?.message || 'Ошибка регистрации',
+      }
     }
-
-    const newUser: StoredUser = { email, name, password, role: 'user' }
-    users.push(newUser)
-    localStorage.setItem('users', JSON.stringify(users))
-
-    const currentUser: User = { email, name, role: 'user' }
-    setUser(currentUser)
-    localStorage.setItem('user', JSON.stringify(currentUser))
-    return { success: true }
   }
 
   const logout = () => {
-    setUser(null)
-    localStorage.removeItem('user')
+    setSession(null)
+    localStorage.removeItem('auth_session')
   }
 
   const addToCart = (item: CartItem) => {
@@ -83,10 +98,20 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const cartTotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get('/api/products')
+      setProducts(response.data)
+    } catch (error) {
+      console.error('Ошибка загрузки товаров:', error)
+    }
+  }
+
   return (
     <AppContext.Provider value={{
-      user, isAuth, isAdmin, login, register, logout,
+      user, isAuth, isAdmin, role, login, register, logout,
       cart, addToCart, removeFromCart, clearCart, cartTotal,
+      products, fetchProducts,
     }}>
       {children}
     </AppContext.Provider>

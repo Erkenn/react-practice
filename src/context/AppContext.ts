@@ -1,10 +1,10 @@
 import { createContext } from 'react'
 
-// Типы
 export interface User {
-  email: string
+  id: number
+  username: string
   name: string
-  role: 'user' | 'admin'
+  role: 'admin' | 'user'
 }
 
 export interface CartItem {
@@ -15,18 +15,34 @@ export interface CartItem {
   image: string
 }
 
+export interface Product {
+  id: number
+  name: string
+  price: number
+  oldPrice?: number
+  category: string
+  image: string
+  rating: number
+  reviews: number
+}
+
+export type UserRole = 'guest' | 'user' | 'admin'
+
 export interface AppContextType {
   user: User | null
   isAuth: boolean
   isAdmin: boolean
-  login: (email: string, password: string) => Promise<{ success: boolean; error?: string }>
-  register: (email: string, name: string, password: string) => Promise<{ success: boolean; error?: string }>
+  role: UserRole
+  login: (username: string, password: string) => Promise<{ success: boolean; error?: string }>
+  register: (username: string, password: string, name: string) => Promise<{ success: boolean; error?: string }>
   logout: () => void
   cart: CartItem[]
   addToCart: (item: CartItem) => void
   removeFromCart: (id: string) => void
   clearCart: () => void
   cartTotal: number
+  products: Product[]
+  fetchProducts: () => Promise<void>
 }
 
 export const AppContext = createContext<AppContextType | undefined>(undefined)

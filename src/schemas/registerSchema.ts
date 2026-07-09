@@ -5,10 +5,10 @@ export const registerSchema = yup.object({
     .string()
     .required('Имя обязательно')
     .min(2, 'Минимум 2 символа'),
-  email: yup
+  username: yup
     .string()
-    .required('Email обязателен')
-    .email('Некорректный email'),
+    .required('Логин обязателен')
+    .min(3, 'Минимум 3 символа'),
   password: yup
     .string()
     .required('Пароль обязателен')

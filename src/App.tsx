@@ -9,14 +9,15 @@ import { Cart } from './pages/Cart/Cart'
 import { Login } from './pages/Login/Login'
 import { Register } from './pages/Register/Register'
 import { Profile } from './pages/Profile/Profile'
+import { Admin } from './pages/Admin/Admin'
 import './App.module.scss'
 
 function Header() {
-  const { user, logout, isAuth, cart } = useAppContext()
+  const { user, logout, isAuth, cart, role } = useAppContext()
 
   return (
     <header className="header">
-      <Link to="/" className="header__logo">🛍️ Shop</Link>
+      <Link to="/" className="header__logo">️ Shop</Link>
       <nav className="header__nav">
         <Link to="/">Главная</Link>
         <Link to="/catalog">Каталог</Link>
@@ -24,6 +25,7 @@ function Header() {
           Корзина
           {cart.length > 0 && <Badge variant="error" size="sm">{cart.length}</Badge>}
         </Link>
+        {role === 'admin' && <Link to="/admin">Админ</Link>}
       </nav>
       <div className="header__actions">
         {isAuth ? (
@@ -66,6 +68,14 @@ function AppRoutes() {
             element={
               <ProtectedRoute>
                 <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute requireAdmin>
+                <Admin />
               </ProtectedRoute>
             }
           />

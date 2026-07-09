@@ -8,7 +8,7 @@ import styles from './Login.module.scss'
 import { useState } from 'react'
 
 interface LoginForm {
-  email: string
+  username: string
   password: string
 }
 
@@ -26,8 +26,7 @@ export function Login() {
   })
 
   const onSubmit = async (data: LoginForm) => {
-    const result = await login(data.email, data.password)
-
+    const result = await login(data.username, data.password)
     if (result.success) {
       navigate('/')
     } else {
@@ -54,28 +53,23 @@ export function Login() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.formGroup}>
           <Input
-            label="Email"
-            placeholder="your@email.com"
-            type="email"
-            variant={errors.email ? 'error' : 'none'}
-            {...register('email')}
+            label="Логин"
+            placeholder="admin или user"
+            variant={errors.username ? 'error' : 'none'}
+            {...register('username')}
           />
-          {errors.email && (
-            <p className={styles.errorMessage}>{errors.email.message}</p>
-          )}
+          {errors.username && <p className={styles.errorMessage}>{errors.username.message}</p>}
         </div>
 
         <div className={styles.formGroup}>
           <Input
             label="Пароль"
-            placeholder="Введите пароль"
+            placeholder="admin или user"
             type="password"
             variant={errors.password ? 'error' : 'none'}
             {...register('password')}
           />
-          {errors.password && (
-            <p className={styles.errorMessage}>{errors.password.message}</p>
-          )}
+          {errors.password && <p className={styles.errorMessage}>{errors.password.message}</p>}
         </div>
 
         <Button

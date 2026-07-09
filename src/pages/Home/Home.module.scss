@@ -1,0 +1,17 @@
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.subtitle {
+  font-size: 20px;
+  color: var(--color-text-secondary);
+  margin-bottom: 40px;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}

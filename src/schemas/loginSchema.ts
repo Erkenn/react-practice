@@ -1,10 +1,10 @@
 import * as yup from 'yup'
 
 export const loginSchema = yup.object({
-  email: yup
+  username: yup
     .string()
-    .required('Email обязателен')
-    .email('Некорректный email'),
+    .required('Логин обязателен')
+    .min(3, 'Минимум 3 символа'),
   password: yup
     .string()
     .required('Пароль обязателен')
