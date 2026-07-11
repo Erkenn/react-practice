@@ -37,6 +37,12 @@ function ProductCardComponent({
             </Badge>
           </span>
         )}
+        
+        {onAddToCart && (
+          <button className={styles.card__addToCart} onClick={onAddToCart}>
+            В корзину
+          </button>
+        )}
       </div>
 
       <div className={styles.card__content}>
@@ -55,10 +61,6 @@ function ProductCardComponent({
             <span className={styles.card__oldPrice}>${oldPrice.toFixed(2)}</span>
           )}
         </div>
-
-        <button className={styles.card__cartButton} onClick={onAddToCart}>
-          🛒
-        </button>
       </div>
     </div>
   )
