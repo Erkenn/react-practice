@@ -1,8 +1,7 @@
-import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AppProvider } from './context/AppProvider'
-import { useAppContext } from './context/useAppContext'
 import { ProtectedRoute } from './components/ProtectedRoute'
-import { Button, Avatar, Badge } from './UI'
+import { Header } from './components/Header/Header'
 import { Home } from './pages/Home/Home'
 import { Catalog } from './pages/Catalog/Catalog'
 import { Cart } from './pages/Cart/Cart'
@@ -11,46 +10,6 @@ import { Register } from './pages/Register/Register'
 import { Profile } from './pages/Profile/Profile'
 import { Admin } from './pages/Admin/Admin'
 import './App.module.scss'
-
-function Header() {
-  const { user, logout, isAuth, cart, role } = useAppContext()
-
-  return (
-    <header className="header">
-      <Link to="/" className="header__logo">️ Shop</Link>
-      <nav className="header__nav">
-        <Link to="/">Главная</Link>
-        <Link to="/catalog">Каталог</Link>
-        <Link to="/cart">
-          Корзина
-          {cart.length > 0 && <Badge variant="error" size="sm">{cart.length}</Badge>}
-        </Link>
-        {role === 'admin' && <Link to="/admin">Админ</Link>}
-      </nav>
-      <div className="header__actions">
-        {isAuth ? (
-          <>
-            <Link to="/profile">
-              <Avatar type="text" initials={user?.name?.charAt(0) || 'U'} size="sm" />
-            </Link>
-            <Button variant="textOnly" size="sm" onClick={logout}>
-              Выйти
-            </Button>
-          </>
-        ) : (
-          <>
-            <Link to="/login">
-              <Button variant="secondary" size="sm">Войти</Button>
-            </Link>
-            <Link to="/register">
-              <Button size="sm">Регистрация</Button>
-            </Link>
-          </>
-        )}
-      </div>
-    </header>
-  )
-}
 
 function AppRoutes() {
   return (

@@ -56,9 +56,9 @@ function ProductCardComponent({
         )}
 
         <div className={styles.card__price}>
-          <span className={styles.card__currentPrice}>${price.toFixed(2)}</span>
+          <span className={styles.card__currentPrice}>₽{price.toFixed(2)}</span>
           {oldPrice && (
-            <span className={styles.card__oldPrice}>${oldPrice.toFixed(2)}</span>
+            <span className={styles.card__oldPrice}>₽{oldPrice.toFixed(2)}</span>
           )}
         </div>
       </div>

@@ -92,6 +92,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setCart(prev => prev.filter(i => i.id !== id))
   }
 
+  const updateQuantity = (id: string, quantity: number) => {
+    if (quantity <= 0) {
+      removeFromCart(id)
+      return
+    }
+    setCart(prev => prev.map(i => i.id === id ? { ...i, quantity } : i))
+  }
+
   const clearCart = () => {
     setCart([])
   }
@@ -110,7 +118,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   return (
     <AppContext.Provider value={{
       user, isAuth, isAdmin, role, login, register, logout,
-      cart, addToCart, removeFromCart, clearCart, cartTotal,
+      cart, addToCart, removeFromCart, updateQuantity, clearCart, cartTotal,
       products, fetchProducts,
     }}>
       {children}

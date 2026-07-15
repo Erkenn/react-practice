@@ -27,14 +27,21 @@
       "password": "$2b$10$z527UiiAjiCwXmxeSM4V/uOvSDHNJY.Y9Tgw2SvtvJg9VyOgvGfrG",
       "name": "Админ",
       "role": "admin"
+    },
+    {
+      "id": 1784104718981,
+      "username": "test",
+      "password": "$2b$10$EcSpSL0uXMYvruhyHiYPL.DlZNgHhGHohizd/MOTZTF.nZcpnRh8W",
+      "name": "test",
+      "role": "user"
     }
   ],
   "products": [
     {
       "id": 1,
       "name": "Nike Air Max",
-      "price": 129,
-      "oldPrice": 159,
+      "price": 12990,
+      "oldPrice": 15990,
       "category": "shoes",
       "image": "https://placehold.co/400x400/FF6B6B/FFFFFF?text=Nike",
       "rating": 4.8,
@@ -43,7 +50,7 @@
     {
       "id": 2,
       "name": "Puma Running",
-      "price": 89,
+      "price": 8990,
       "category": "shoes",
       "image": "https://placehold.co/400x400/4ECDC4/FFFFFF?text=Puma",
       "rating": 4.5,
@@ -52,8 +59,8 @@
     {
       "id": 3,
       "name": "Adidas Ultraboost",
-      "price": 149,
-      "oldPrice": 179,
+      "price": 14990,
+      "oldPrice": 17990,
       "category": "shoes",
       "image": "https://placehold.co/400x400/45B7D1/FFFFFF?text=Adidas",
       "rating": 4.9,
@@ -62,7 +69,7 @@
     {
       "id": 4,
       "name": "Cotton T-Shirt",
-      "price": 29,
+      "price": 2990,
       "category": "clothes",
       "image": "https://placehold.co/400x400/96CEB4/FFFFFF?text=T-Shirt",
       "rating": 4.7,
@@ -71,7 +78,7 @@
     {
       "id": 5,
       "name": "Leather Jacket",
-      "price": 199,
+      "price": 19990,
       "category": "clothes",
       "image": "https://placehold.co/400x400/333333/FFFFFF?text=Jacket",
       "rating": 4.6,
@@ -80,7 +87,7 @@
     {
       "id": 6,
       "name": "Watch Classic",
-      "price": 249,
+      "price": 24990,
       "category": "accessories",
       "image": "https://placehold.co/400x400/666666/FFFFFF?text=Watch",
       "rating": 4.4,
