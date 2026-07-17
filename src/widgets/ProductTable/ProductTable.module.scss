@@ -1,0 +1,71 @@
+.table {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--gray-200);
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  th {
+    background: var(--gray-50);
+    font-weight: 700;
+    color: var(--gray-900);
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+
+  tr {
+    transition: background 0.2s;
+
+    &:hover {
+      background: var(--gray-50);
+    }
+
+    &:last-child td {
+      border-bottom: none;
+    }
+  }
+}
+
+.btnDelete {
+  padding: 8px 16px;
+  background: var(--error-100);
+  color: var(--error-700);
+  border: 2px solid var(--error-300);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+
+  &:hover {
+    background: var(--error-200);
+    border-color: var(--error-400);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2);
+  }
+
+  &:active {
+    background: var(--error-300);
+    transform: translateY(0);
+    box-shadow: none;
+  }
+}
+
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--gray-600);
+  font-size: 18px;
+}

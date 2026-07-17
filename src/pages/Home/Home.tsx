@@ -1,19 +1,11 @@
 import { Link } from 'react-router-dom'
-import { useEffect } from 'react'
-import { Button, Badge, Alert, ProductCard } from '../../UI'
 import { useAppContext } from '../../context/useAppContext'
+import { Button, Badge, Alert } from '../../UI'
+import { PopularProducts } from '../../widgets/PopularProducts/PopularProducts'
 import styles from './Home.module.scss'
 
 export function Home() {
-  const { role, isAuth, products, fetchProducts, addToCart, user } = useAppContext()
-
-  useEffect(() => {
-    if (products.length === 0) {
-      fetchProducts()
-    }
-  }, [products.length, fetchProducts])
-
-  const popularProducts = products.slice(0, 4)
+  const { role, isAuth, user } = useAppContext()
 
   return (
     <div className={styles.home}>
@@ -55,38 +47,7 @@ export function Home() {
         />
       </section>
 
-      <section className={styles.section}>
-        <div className={styles.section__header}>
-          <h2 className={styles.section__title}>Популярные товары</h2>
-          <Link to="/catalog" className={styles.section__link}>
-            Смотреть все →
-          </Link>
-        </div>
-        <div className={styles.productGrid}>
-          {popularProducts.map((product) => (
-            <ProductCard
-              key={product.id}
-              image={product.image}
-              title={product.name}
-              price={product.price}
-              oldPrice={product.oldPrice}
-              discount={product.oldPrice ? Math.round((1 - product.price / product.oldPrice) * 100) : undefined}
-              rating={product.rating}
-              reviews={product.reviews}
-              variant="compact"
-              onAddToCart={() =>
-                addToCart({
-                  id: String(product.id),
-                  name: product.name,
-                  price: product.price,
-                  quantity: 1,
-                  image: product.image,
-                })
-              }
-            />
-          ))}
-        </div>
-      </section>
+      <PopularProducts />
 
       <section className={styles.section}>
         <h2 className={styles.section__title}>Категории</h2>

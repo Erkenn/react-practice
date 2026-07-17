@@ -20,6 +20,13 @@
       "password": "$2b$10$EcSpSL0uXMYvruhyHiYPL.DlZNgHhGHohizd/MOTZTF.nZcpnRh8W",
       "name": "test",
       "role": "user"
+    },
+    {
+      "id": 1784301532422,
+      "username": "aaa",
+      "password": "$2b$10$ODJrtclcp1/uM9pgYhDiQO.oZWP4gpB9bywYpiVnWGakaIQFjkTEi",
+      "name": "aa",
+      "role": "user"
     }
   ],
   "products": [

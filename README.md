@@ -1,75 +1,81 @@
-# React + TypeScript + Vite
+# Интернет-магазин
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+веб-приложение интернет-магазина, разработанное на стеке **React + TypeScript + Vite** с бэкендом на **Express**.
 
-Currently, two official plugins are available:
+- Сборка на **Vite + React + TypeScript**
+- Отсутствие сторонних UI-библиотек (все компоненты написаны с нуля)
+- Модульный CSS (**SCSS Modules**)
+- Архитектурное разделение: `Pages`, `UI`, `Widgets`, `Components`, `Context`
+- Ролевая модель: `guest`, `user`, `admin`
+- Валидация форм: **React Hook Form + Yup**
+- Управление состоянием: **Context API**
+- Авторизация через **JWT-токены**
+- Бэкенд упакован в **Docker** с `docker-compose.yml`
+- Более 5 страниц (Home, Catalog, Cart, Login, Register, Profile, Admin)
+- Корректная работа команды `npm run build`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Функционал
+- **Авторизация и регистрация:** Безопасный вход с хешированием паролей (bcrypt) и выдачей JWT.
+- **Каталог товаров:** Поиск, фильтрация по категориям, сортировка (цена, рейтинг), переключение вида (сетка/список).
+- **Корзина:** Управление количеством, удаление товаров, расчет стоимости, применение промокода (`sale10`).
+- **Личный кабинет:** Просмотр данных пользователя и сводки по корзине.
+- **Панель администратора:** Статистика, управление товарами (удаление), просмотр списка пользователей.
 
-## React Compiler
+## Технологический стек
+**Frontend:** React 19, TypeScript, Vite, React Router DOM, SCSS Modules, Axios, React Hook Form, Yup.  
+**Backend:** Node.js, Express, JWT, Bcrypt, JSON-файл как БД.  
+**DevOps:** Docker, Docker Compose, Nginx
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+## Структура проекта
+```text
+├── server/             # Бэкенд (Express + JWT + Bcrypt)
+│   ├── db.json         # База данных
+│   ├── index.js        # Точка входа сервера
+│   └── Dockerfile      # Образ бэкенда
+├── src/
+│   ├── api/            # Настройка Axios и интерсепторов
+│   ├── components/     # Служебные компоненты (ProtectedRoute)
+│   ├── context/        # Global state (AppContext)
+│   ├── pages/          # Страницы-маршруты (Home, Catalog, Cart, etc.)
+│   ├── schemas/        # Схемы валидации Yup
+│   ├── UI/             # Базовые переиспользуемые компоненты (Button, Input, ProductCard, etc.)
+│   ├── widgets/        # Составные блоки с бизнес-логикой (Header, ProductList, CartWidget, AdminStats, etc.)
+│   └── styles/         # Глобальные CSS-переменные
+├── docker-compose.yml  # Оркестрация контейнеров
+├── Dockerfile          # Образ фронтенда (сборка + Nginx)
+└── nginx.conf          # Конфигурация проксирования API
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Инструкция по запуску
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Способ 1: Локальный запуск
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Установите зависимости:
+```bash
+npm install
+```
 
+2. Запустите фронтенд и бэкенд одновременно:
+```bash
+npm run dev:all
+```
+
+Фронтенд откроется на http://localhost:5173, бэкенд будет работать на http://localhost:3001
+
+### Способ 2: Запуск через Docker
+
+1. Убедитесь, что у вас установлены Docker и Docker Compose.
+
+2. Выполните команду в корневой папке проекта:
+```bash
+docker-compose up --build
+```
+
+3. Приложение будет доступно по адресу: http://localhost
+
+## Сборка проекта
+
+Для проверки production-сборки выполните:
+```bash
+npm run build
 ```

@@ -1,0 +1,228 @@
+.home {
+  padding: 0 40px;
+}
+
+.hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: var(--radius-lg);
+  padding: 80px 40px;
+  margin-bottom: 40px;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 500px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  &__badgeWrapper {
+    margin-bottom: 24px;
+    display: inline-block;
+    
+    :global(.badge) {
+      background: rgba(255, 255, 255, 0.25) !important;
+      color: white !important;
+      border: 2px solid rgba(255, 255, 255, 0.4) !important;
+      font-size: 16px !important;
+      font-weight: 600 !important;
+      padding: 10px 24px !important;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  &__title {
+    font-size: 56px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.1;
+    color: white;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  &__subtitle {
+    font-size: 20px;
+    margin-bottom: 40px;
+    opacity: 0.95;
+    line-height: 1.5;
+    color: white;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  &__actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+.section {
+  margin-bottom: 60px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  &__title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  &__link {
+    color: var(--primary-500);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--primary-700);
+    }
+  }
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.categoryCard {
+  display: block;
+  padding: 32px 24px;
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s;
+  box-shadow: var(--shadow-small);
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-medium);
+  }
+
+  &__icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+
+    &_shoes {
+      background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
+    }
+
+    &_clothes {
+      background: linear-gradient(135deg, #4ECDC4 0%, #7EDDD6 100%);
+    }
+
+    &_accessories {
+      background: linear-gradient(135deg, #FFD93D 0%, #FFE66D 100%);
+    }
+  }
+
+  &__title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  &__text {
+    color: var(--gray-600);
+    font-size: 14px;
+  }
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.feature {
+  padding: 32px 24px;
+  background: var(--gray-50);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  &__icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+
+  &__title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  &__text {
+    color: var(--gray-600);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 60px 20px;
+
+    &__title {
+      font-size: 36px;
+    }
+
+    &__subtitle {
+      font-size: 16px;
+    }
+  }
+
+  .section__title {
+    font-size: 24px;
+  }
+}
