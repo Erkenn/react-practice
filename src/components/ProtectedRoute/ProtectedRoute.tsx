@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom'
-import { useAppContext } from '../context/useAppContext'
+import { useAppContext } from '../../context/useAppContext'
 import type { ReactNode } from 'react'
 
 interface ProtectedRouteProps {

@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AppProvider } from './context/AppProvider'
-import { ProtectedRoute } from './components/ProtectedRoute'
+import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute'
 import { Header } from './components/Header/Header'
 import { Home } from './pages/Home/Home'
 import { Catalog } from './pages/Catalog/Catalog'

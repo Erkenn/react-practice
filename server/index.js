@@ -111,6 +111,49 @@ app.get('/api/profile', authMiddleware, (req, res) => {
   res.json({ id: user.id, username: user.username, name: user.name, role: user.role })
 })
 
+app.get('/api/admin/stats', (req, res) => {
+  try {
+    const db = loadDB();
+    res.json({
+      productsCount: db.products ? db.products.length : 0,
+      usersCount: db.users ? db.users.length : 0,
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Ошибка чтения статистики' });
+  }
+});
+
+app.get('/api/admin/products', (req, res) => {
+  try {
+    const db = loadDB();
+    res.json(db.products || []);
+  } catch (error) {
+    res.status(500).json({ error: 'Ошибка чтения товаров' });
+  }
+});
+
+app.delete('/api/admin/products/:id', (req, res) => {
+  try {
+    const db = loadDB();
+    const productId = parseInt(req.params.id);
+    db.products = db.products.filter(p => p.id !== productId);
+    saveDB(db);
+    res.json({ success: true, message: 'Товар удален' });
+  } catch (error) {
+    res.status(500).json({ error: 'Ошибка удаления товара' });
+  }
+});
+
+app.get('/api/admin/users', (req, res) => {
+  try {
+    const db = loadDB();
+    const safeUsers = (db.users || []).map(({ password, ...user }) => user);
+    res.json(safeUsers);
+  } catch (error) {
+    res.status(500).json({ error: 'Ошибка чтения пользователей' });
+  }
+});
+
 const PORT = 3001
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`)

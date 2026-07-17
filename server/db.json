@@ -1,20 +1,6 @@
 {
   "users": [
     {
-      "id": 1,
-      "username": "admin",
-      "password": "$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy",
-      "name": "Администратор",
-      "role": "admin"
-    },
-    {
-      "id": 2,
-      "username": "user",
-      "password": "$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy",
-      "name": "Пользователь",
-      "role": "user"
-    },
-    {
       "id": 1783615338389,
       "username": "testtest",
       "password": "$2b$10$ISdzDQ3AMzVSN3bSxSwCBOhLJKPWdYTuCcr04nPxZF5wlfAj0/ml6",
